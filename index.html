@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Форма для заполнения информации о банковской карточке</title>
+<style>
+.card-thumbnail {
+    width: 300px;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    background-color: #f0f0f0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.card-field {
+    margin-bottom: 10px;
+}
+
+.card-field label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+
+</style>
+</head>
+<body>
+    <h2>Заполните информацию о банковской карточке</h2>
+    <form id="cardForm">
+        <div class="card-field">
+            <label for="bankName">Название банка:</label>
+            <input type="text" id="bankName" name="bankName" required>
+        </div>
+        
+        <div class="card-field">
+            <label for="paymentSystem">Тип платежной системы:</label>
+            <select id="paymentSystem" name="paymentSystem" required>
+                <option value="Visa">Visa</option>
+                <option value="Mastercard">Mastercard</option>
+                <option value="American Express">American Express</option>
+            </select>
+        </div>
+        
+        <div class="card-field">
+            <label for="cardNumber">Номер карты (16 цифр):</label>
+            <input type="text" id="cardNumber" name="cardNumber" pattern="[0-9]{16}" required>
+        </div>
+        
+        <div class="card-field">
+            <label for="cardHolderName">Имя держателя карты:</label>
+            <input type="text" id="cardHolderName" name="cardHolderName" required>
+        </div>
+        
+        <div class="card-field">
+            <label for="expiryDate">Месяц и год окончания карты:</label>
+            <input type="month" id="expiryDate" name="expiryDate" required>
+        </div>
+        
+        <input type="submit" value="Отправить">
+    </form>
+
+    <div class="card-thumbnail" id="cardThumbnail">
+        <div class="card-info" id="bankNameInfo">Название банка:</div>
+        <div class="card-info" id="paymentSystemInfo">Тип платежной системы:</div>
+        <div class="card-info" id="cardNumberInfo">Номер карты:</div>
+        <div class="card-info" id="cardHolderNameInfo">Имя держателя карты:</div>
+        <div class="card-info" id="expiryDateInfo">Месяц и год окончания карты:</div>
+    </div>
+
+    <h2>Информация о картах</h2>
+    <table id="cardTable">
+        <thead>
+            <tr>
+                <th>Название банка</th>
+                <th>Тип платежной системы</th>
+                <th>Номер карты</th>
+                <th>Имя держателя карты</th>
+                <th>Месяц и год окончания карты</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+
+    <script>
+        const cardForm = document.getElementById('cardForm');
+        const cardInfoElements = document.querySelectorAll('.card-info');
+
+        cardForm.addEventListener('submit', function(event) {
+            event.preventDefault(); 
+
+            const bankName = document.getElementById('bankName').value;
+            const paymentSystem = document.getElementById('paymentSystem').value;
+            const cardNumber = document.getElementById('cardNumber').value;
+            const cardHolderName = document.getElementById('cardHolderName').value;
+            const expiryDate = document.getElementById('expiryDate').value;
+
+            cardInfoElements[0].textContent = `Название банка: ${bankName}`;
+            cardInfoElements[1].textContent = `Тип платежной системы: ${paymentSystem}`;
+            cardInfoElements[2].textContent = `Номер карты: ${cardNumber}`;
+            cardInfoElements[3].textContent = `Имя держателя карты: ${cardHolderName}`;
+            cardInfoElements[4].textContent = `Месяц и год окончания карты: ${expiryDate}`;
+
+            cardInfoElements.forEach(element => {
+                element.style.display = 'block';
+            });
+
+            const cardTable = document.getElementById('cardTable').getElementsByTagName('tbody')[0];
+            const newRow = cardTable.insertRow();
+            newRow.innerHTML = `
+                <td>${bankName}</td>
+                <td>${paymentSystem}</td>
+                <td>${cardNumber}</td>
+                <td>${cardHolderName}</td>
+                <td>${expiryDate}</td>
+            `;
+        });
+    </script>
+</body>
+</html>
