@@ -5,118 +5,239 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Форма для заполнения информации о банковской карточке</title>
 <style>
-.card-thumbnail {
-    width: 300px;
-    padding: 20px;
-    margin-bottom: 20px;
-    border-radius: 10px;
-    background-color: #f0f0f0;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+th{
+  font-size: 12px;
+}
+td{
+  font-size: 12px;
+}
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+    margin: 0;
+    padding: 0;
 }
 
-.card-field {
+.container {
+    max-width: 350px;
+    margin: 50px auto;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.card-form {
+    background-color: #007bff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.card-form h3 {
+    color: #fff;
     margin-bottom: 10px;
 }
 
-.card-field label {
+.card-form .card-field {
+    margin-bottom: 10px;
+}
+
+.card-form .card-field label {
+    color: #fff;
+    font-weight: bold;
     display: block;
     margin-bottom: 5px;
 }
 
+.card-form .card-field input,
+.card-form .card-field select {
+    width: 60%;
+    padding: 5px;
+    border: none;
+    border-radius: 5px;
+    margin-top: 5px;
+}
 
+.card-form .card-field select {
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url('down-arrow.png');
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 15px;
+}
+
+.card-form input[type="submit"] {
+    width: 70%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #0056b3;
+    color: #fff;
+    cursor: pointer;
+}
+
+.card-form input[type="submit"]:hover {
+    background-color: #003d80;
+}
+.card {
+            width: 260px;
+            height: 100px;
+            background-color: #f6f6f6;
+            border: 1px solid #ccc;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        .card .chip {
+            width: 30px;
+            height: 20px;
+            background: linear-gradient(45deg, #808080, #b0b0b0);
+            border-radius: 5px;
+            position: absolute;
+            top: 30px;
+            left: 30px;
+        }
+        .card .logo {
+            width: 50px;
+            height: 60px;
+            position: absolute;
+            top: 30px;
+            right: 30px;
+        }
+        .card .number {
+            font-size: 14px;
+            font-family: 'Arial', sans-serif;
+            margin-top: 30px;
+            letter-spacing: 6px;
+            color: #444;
+        }
+        .card .name {
+            font-size: 12px;
+            font-family: 'Arial', sans-serif;
+            color: #444;
+            margin-top: 5px;
+        }
+        .card .expiry {
+            font-size: 12px;
+            font-family: 'Arial', sans-serif;
+            color: #444;
+            margin-top: 10px;
+        }
 </style>
 </head>
 <body>
-    <h2>Заполните информацию о банковской карточке</h2>
-    <form id="cardForm">
-        <div class="card-field">
-            <label for="bankName">Название банка:</label>
-            <input type="text" id="bankName" name="bankName" required>
+    <div class="container">
+        <div class="card-form">
+            <h3>Заполните информацию о банковской карточке</h3>
+            <form id="cardForm">
+                <div class="card-field">
+                    <label for="bankName">Название банка:</label>
+                    <input type="text" id="bankName" name="bankName" required>
+                </div>
+                
+                <div class="card-field">
+                    <label for="paymentSystem">Тип платежной системы:</label>
+                    <select id="paymentSystem" name="paymentSystem" required>
+                        <option value="Visa">Visa</option>
+                        <option value="Mastercard">Mastercard</option>
+                        <option value="American Express">American Express</option>
+                    </select>
+                </div>
+                
+                <div class="card-field">
+                    <label for="cardNumber">Номер карты (16 цифр):</label>
+                    <input type="text" id="cardNumber" name="cardNumber" pattern="[0-9]{16}" required>
+                </div>
+                
+                <div class="card-field">
+                    <label for="cardHolderName">Имя держателя карты:</label>
+                    <input type="text" id="cardHolderName" name="cardHolderName" required>
+                </div>
+                
+                <div class="card-field">
+                    <label for="expiryDate">Месяц и год окончания карты:</label>
+                    <input type="month" id="expiryDate" name="expiryDate" required>
+                </div>
+                
+                <input type="submit" value="Отправить">
+            </form>
         </div>
-        
-        <div class="card-field">
-            <label for="paymentSystem">Тип платежной системы:</label>
-            <select id="paymentSystem" name="paymentSystem" required>
-                <option value="Visa">Visa</option>
-                <option value="Mastercard">Mastercard</option>
-                <option value="American Express">American Express</option>
-            </select>
-        </div>
-        
-        <div class="card-field">
-            <label for="cardNumber">Номер карты (16 цифр):</label>
-            <input type="text" id="cardNumber" name="cardNumber" pattern="[0-9]{16}" required>
-        </div>
-        
-        <div class="card-field">
-            <label for="cardHolderName">Имя держателя карты:</label>
-            <input type="text" id="cardHolderName" name="cardHolderName" required>
-        </div>
-        
-        <div class="card-field">
-            <label for="expiryDate">Месяц и год окончания карты:</label>
-            <input type="month" id="expiryDate" name="expiryDate" required>
-        </div>
-        
-        <input type="submit" value="Отправить">
-    </form>
 
-    <div class="card-thumbnail" id="cardThumbnail">
-        <div class="card-info" id="bankNameInfo">Название банка:</div>
-        <div class="card-info" id="paymentSystemInfo">Тип платежной системы:</div>
-        <div class="card-info" id="cardNumberInfo">Номер карты:</div>
-        <div class="card-info" id="cardHolderNameInfo">Имя держателя карты:</div>
-        <div class="card-info" id="expiryDateInfo">Месяц и год окончания карты:</div>
+        <div id="cardInfo" class="card-info">
+          <h3>Информация о карте:</h3>
+          <div class="card">
+            <div class="chip"></div>
+            <div class="number"><span id="displayCardNumber"></span></div>
+            <div class="name"><span id="displayCardHolderName"></span></div>
+            <div class="expiry"><span id="displayExpiryDate"></span></div>
+
+            <span id="displayBankName"></span>
+            <span id="displayPaymentSystem"></span>
+            
+            
+            
+        </div>
+        </div>
+      </div>
+      
+      
+        
+        <h3>Информация о картах</h3>
+        <table id="cardTable">
+            <thead>
+                <tr>
+                    <th>Название банка</th>
+                    <th>Тип платежной системы</th>
+                    <th>Номер карты</th>
+                    <th>Имя держателя карты</th>
+                    <th>Месяц и год окончания карты</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
     </div>
 
-    <h2>Информация о картах</h2>
-    <table id="cardTable">
-        <thead>
-            <tr>
-                <th>Название банка</th>
-                <th>Тип платежной системы</th>
-                <th>Номер карты</th>
-                <th>Имя держателя карты</th>
-                <th>Месяц и год окончания карты</th>
-            </tr>
-        </thead>
-        <tbody>
-        </tbody>
-    </table>
-
     <script>
-        const cardForm = document.getElementById('cardForm');
-        const cardInfoElements = document.querySelectorAll('.card-info');
-
-        cardForm.addEventListener('submit', function(event) {
-            event.preventDefault(); 
-
-            const bankName = document.getElementById('bankName').value;
-            const paymentSystem = document.getElementById('paymentSystem').value;
-            const cardNumber = document.getElementById('cardNumber').value;
-            const cardHolderName = document.getElementById('cardHolderName').value;
-            const expiryDate = document.getElementById('expiryDate').value;
-
-            cardInfoElements[0].textContent = `Название банка: ${bankName}`;
-            cardInfoElements[1].textContent = `Тип платежной системы: ${paymentSystem}`;
-            cardInfoElements[2].textContent = `Номер карты: ${cardNumber}`;
-            cardInfoElements[3].textContent = `Имя держателя карты: ${cardHolderName}`;
-            cardInfoElements[4].textContent = `Месяц и год окончания карты: ${expiryDate}`;
-
-            cardInfoElements.forEach(element => {
-                element.style.display = 'block';
-            });
-
-            const cardTable = document.getElementById('cardTable').getElementsByTagName('tbody')[0];
-            const newRow = cardTable.insertRow();
-            newRow.innerHTML = `
-                <td>${bankName}</td>
-                <td>${paymentSystem}</td>
-                <td>${cardNumber}</td>
-                <td>${cardHolderName}</td>
-                <td>${expiryDate}</td>
-            `;
-        });
-    </script>
+      const cardForm = document.getElementById('cardForm');
+      const cardTable = document.getElementById('cardTable').getElementsByTagName('tbody')[0];
+      const cardInfo = document.getElementById('cardInfo');
+      const displayBankName = document.getElementById('displayBankName');
+      const displayPaymentSystem = document.getElementById('displayPaymentSystem');
+      const displayCardNumber = document.getElementById('displayCardNumber');
+      const displayCardHolderName = document.getElementById('displayCardHolderName');
+      const displayExpiryDate = document.getElementById('displayExpiryDate');
+  
+      cardForm.addEventListener('submit', function(event) {
+          event.preventDefault(); 
+  
+          const bankName = document.getElementById('bankName').value;
+          const paymentSystem = document.getElementById('paymentSystem').value;
+          const cardNumber = document.getElementById('cardNumber').value;
+          const cardHolderName = document.getElementById('cardHolderName').value;
+          const expiryDate = document.getElementById('expiryDate').value;
+  
+          // Update card info
+          displayBankName.textContent = bankName;
+          displayPaymentSystem.textContent = paymentSystem;
+          displayCardNumber.textContent = cardNumber;
+          displayCardHolderName.textContent = cardHolderName;
+          displayExpiryDate.textContent = expiryDate;
+  
+          // Add row to table
+          const newRow = cardTable.insertRow();
+          newRow.innerHTML = `
+              <td>${bankName}</td>
+              <td>${paymentSystem}</td>
+              <td>${cardNumber}</td>
+              <td>${cardHolderName}</td>
+              <td>${expiryDate}</td>
+          `;
+      });
+  </script>
 </body>
 </html>
